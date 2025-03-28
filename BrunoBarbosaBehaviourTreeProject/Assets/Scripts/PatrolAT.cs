@@ -1,21 +1,10 @@
 using NodeCanvas.Framework;
 using ParadoxNotion.Design;
-using UnityEngine;
+
 
 namespace NodeCanvas.Tasks.Actions {
 
-	public class ShootinAT : ActionTask {
-		//points
-		public Transform[] patrolPoints;
-		public BBParameter<Transform> Player;
-		public float DetectionRadius;
-		public float PointDistnace;
-		public int NumberOfPointsTraveled;
-		//speed
-		public float Acelerations;
-		public float acecelerationStrength;
-		public float arrivalDistance;
-
+	public class PatrolAT : ActionTask {
 
 		//Use for initialization. This is called only once in the lifetime of the task.
 		//Return null if init was successfull. Return an error string otherwise
