@@ -29,8 +29,14 @@ namespace NodeCanvas.Tasks.Actions {
 
 		//Called once per frame while the action is active.
 		protected override void OnUpdate() {
-
+			TestMove();
 			Move();
+		}
+
+
+		private void TestMove()
+		{
+
 		}
 
 		private void Move()
@@ -38,15 +44,27 @@ namespace NodeCanvas.Tasks.Actions {
             direction = player.transform.position - agent.transform.position;
             Debug.DrawLine(agent.transform.position, agent.transform.position + direction);
 
-            //zig zag
+			//zig zag
 
-            Vector3 adaptedStepDistance = new Vector3(offset, 0);
+			Vector3 adaptedOffset = Vector3.right * offset; // problem 
 
-            Vector2 baseTriangle = direction - (direction - adaptedStepDistance);
-            Vector3 NextPoint = baseTriangle / 2 + new Vector2(offset, 0);
+			// base triangle = player location + (direciton * offset) /2
+			Vector3 baseTriangle = agent.transform.position + direction.normalized * stepSize;
+
+			Vector3 midPoint = (agent.transform.position+ baseTriangle) / 2;
+
+			Vector3 NextPoint = midPoint + adaptedOffset;
+
+
 
 
             Debug.DrawLine(agent.transform.position, NextPoint, Color.red);
+
+            if (Input.GetKey(KeyCode.Space))
+            {
+				Debug.Log("moveu");
+                offset = offset * -1;
+            }
         }
 
 		/*if it was 2d it would be
