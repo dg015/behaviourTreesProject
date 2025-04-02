@@ -49,7 +49,7 @@ namespace NodeCanvas.Tasks.Actions {
             }
             FinishPatrol();
 
-            Flying();
+            //Flying();
         }
 
         //Called when the task is disabled.
