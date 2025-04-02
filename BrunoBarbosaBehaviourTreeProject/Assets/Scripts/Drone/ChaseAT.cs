@@ -18,10 +18,17 @@ namespace NodeCanvas.Tasks.Actions {
 		// movement 
 		public BBParameter<NavMeshAgent> navAgent;
 
+		//air control
+		public float DefaultAirHeight = 3.61f;
+		public float ascendSpeed = 2f;
 
-		//Use for initialization. This is called only once in the lifetime of the task.
-		//Return null if init was successfull. Return an error string otherwise
-		protected override string OnInit() {
+		//attack
+		public float attackReach = 1f;
+        public float TaclkeDistance = 3f;
+
+        //Use for initialization. This is called only once in the lifetime of the task.
+        //Return null if init was successfull. Return an error string otherwise
+        protected override string OnInit() {
 			return null;
 		}
 
@@ -29,19 +36,30 @@ namespace NodeCanvas.Tasks.Actions {
 		//Call EndAction() to mark the action as finished, either in success or failure.
 		//EndAction can be called from anywhere.
 		protected override void OnExecute() {
+			//run it once at the begining to reach its first point
 			 Move();
 		}
 
 		//Called once per frame while the action is active.
 		protected override void OnUpdate() {
-			
-			if (navAgent.value.remainingDistance< .5)
+			//only run it once it gets to the new point
+			AirControl();
+			if (navAgent.value.remainingDistance < .5)
 			{
 				Debug.Log("arrived");
                 offset = offset * -1;
                 Move();
             }
-			
+            else if (Vector3.Distance(player.position, agent.transform.position) < TaclkeDistance )
+            {
+				Debug.Log("Tackle");
+                navAgent.value.SetDestination(player.position);
+            }
+             if (Vector3.Distance(player.position,agent.transform.position) < attackReach)
+			{
+                Debug.Log("attack");
+                EndAction(true);
+			}
 		}
 
 
@@ -51,7 +69,6 @@ namespace NodeCanvas.Tasks.Actions {
 			// first get the direction
             direction = player.transform.position - agent.transform.position;
             Debug.DrawLine(agent.transform.position, agent.transform.position + direction);
-
 
 			//zig zag
 			//adapt the offset for a vector 3 so it can be used in 3D
@@ -88,5 +105,13 @@ namespace NodeCanvas.Tasks.Actions {
 		protected override void OnPause() {
 			
 		}
+		private void AirControl()
+		{
+			float speed = Mathf.Clamp(Vector3.Distance(agent.transform.position, player.transform.position) / ascendSpeed, .2f, 1f);
+			// if player is not being chased stay at default, if go down to player levels
+			float newY = Mathf.Lerp(agent.transform.position.y, player.transform.position.y, Time.deltaTime * speed);
+            agent.transform.position = new Vector3(agent.transform.position.x, newY, agent.transform.position.z);
+
+        }
 	}
 }
