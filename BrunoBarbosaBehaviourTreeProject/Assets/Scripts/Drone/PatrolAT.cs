@@ -15,15 +15,19 @@ namespace NodeCanvas.Tasks.Actions {
         public float DetectionRadius;
         public int NumberOfPointsTraveled;
         public int CurrentPatrolPoint;
+
         //speed
         public float arrivalDistance;
         public NavMeshAgent navAgent;
+
         //catching the player
         public bool hasBeenFound;
+        public float catchDistance = 10f;
+
         //flying
-        public float DefaulFlyingHeight;
-        public float DescendDistance;
-        public float currentFlyingHeight;
+        public float DefaultAirHeight = 3.61f;
+        public float ascendSpeed = 2f;
+
         //Use for initialization. This is called only once in the lifetime of the task.
         //Return null if init was successfull. Return an error string otherwise
         protected override string OnInit()
@@ -36,6 +40,7 @@ namespace NodeCanvas.Tasks.Actions {
         //EndAction can be called from anywhere.
         protected override void OnExecute()
         {
+            hasBeenFound = false;
             CurrentPatrolPoint = 0;
             //EndAction(true);
         }
@@ -43,6 +48,8 @@ namespace NodeCanvas.Tasks.Actions {
         //Called once per frame while the action is active.
         protected override void OnUpdate()
         {
+            CheckForPlayer();
+            AirControl();
             if (!hasBeenFound)
             {
                 TravelToPoints();
@@ -52,18 +59,14 @@ namespace NodeCanvas.Tasks.Actions {
             //Flying();
         }
 
-        //Called when the task is disabled.
-        protected override void OnStop()
+        private void AirControl()
         {
+            float speed = Mathf.Clamp(Vector3.Distance(agent.transform.position, patrolPoints[CurrentPatrolPoint].transform.position) / ascendSpeed, .2f, 1f);
+            // if player is not being chased stay at default, if go down to player level
+            float newY = Mathf.Lerp(agent.transform.position.y, patrolPoints[CurrentPatrolPoint].transform.position.y, Time.deltaTime * speed);
+            agent.transform.position = new Vector3(agent.transform.position.x, newY, agent.transform.position.z);
 
         }
-
-        //Called when the task is paused.
-        protected override void OnPause()
-        {
-
-        }
-
 
         public void TravelToPoints()
         {
@@ -84,18 +87,14 @@ namespace NodeCanvas.Tasks.Actions {
             }
         }
 
-        public void Flying()
+        public void CheckForPlayer()
         {
-            if (Vector3.Distance(agent.transform.position, patrolPoints[CurrentPatrolPoint].transform.position) < DescendDistance)
+            if(Vector3.Distance(agent.transform.position,Player.value.position)< catchDistance)
             {
-                currentFlyingHeight = patrolPoints[CurrentPatrolPoint].transform.position.y + 1;
+                Vector3.Distance(agent.transform.position, Player.value.position);
+                hasBeenFound = true;
+                EndAction(false);
             }
-            else
-            {
-                currentFlyingHeight = DefaulFlyingHeight;
-            }
-            agent.transform.position = new Vector2(0,currentFlyingHeight);
-            
         }
     }
 

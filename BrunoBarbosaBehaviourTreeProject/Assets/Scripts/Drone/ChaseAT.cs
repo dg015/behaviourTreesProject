@@ -25,6 +25,7 @@ namespace NodeCanvas.Tasks.Actions {
 		//attack
 		public float attackReach = 1f;
         public float TaclkeDistance = 3f;
+		public float escapeDistance = 15f;
 
         //Use for initialization. This is called only once in the lifetime of the task.
         //Return null if init was successfull. Return an error string otherwise
@@ -37,12 +38,20 @@ namespace NodeCanvas.Tasks.Actions {
 		//EndAction can be called from anywhere.
 		protected override void OnExecute() {
 			//run it once at the begining to reach its first point
-			 Move();
+			if(Vector3.Distance(player.position, agent.transform.position) > escapeDistance)
+			{
+                EndAction(false);
+            }
+			else
+			{
+                Move();
+            }
 		}
 
 		//Called once per frame while the action is active.
 		protected override void OnUpdate() {
 			//only run it once it gets to the new point
+			Debug.Log(Vector3.Distance(player.position, agent.transform.position));
 			AirControl();
 			if (navAgent.value.remainingDistance < .5)
 			{
@@ -55,10 +64,14 @@ namespace NodeCanvas.Tasks.Actions {
 				Debug.Log("Tackle");
                 navAgent.value.SetDestination(player.position);
             }
-             if (Vector3.Distance(player.position,agent.transform.position) < attackReach)
+            if (Vector3.Distance(player.position,agent.transform.position) < attackReach)
 			{
                 Debug.Log("attack");
                 EndAction(true);
+			}
+			if(Vector3.Distance(player.position, agent.transform.position) > escapeDistance)
+			{
+				EndAction(false);
 			}
 		}
 
