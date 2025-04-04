@@ -51,7 +51,7 @@ namespace NodeCanvas.Tasks.Actions {
 		//Called once per frame while the action is active.
 		protected override void OnUpdate() {
 			//only run it once it gets to the new point
-			Debug.Log(Vector3.Distance(player.position, agent.transform.position));
+			
 			AirControl();
 			if (navAgent.value.remainingDistance < .5)
 			{
