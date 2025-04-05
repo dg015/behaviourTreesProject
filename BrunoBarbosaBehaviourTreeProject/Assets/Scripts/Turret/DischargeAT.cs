@@ -8,7 +8,7 @@ namespace NodeCanvas.Tasks.Actions {
 		public BBParameter<float> TurretEnergy;
 		public float maxEnergy= 50;
 		public float energyDrainModifier = 1;
-		public bool isBeingCharged = false;
+		public BBParameter<bool> isBeingCharged = false;
 
 		//Use for initialization. This is called only once in the lifetime of the task.
 		//Return null if init was successfull. Return an error string otherwise
@@ -37,7 +37,7 @@ namespace NodeCanvas.Tasks.Actions {
 
 		private void drain()
 		{
-			if(TurretEnergy.value <maxEnergy || TurretEnergy.value >0 && !isBeingCharged)
+			if(TurretEnergy.value <maxEnergy || TurretEnergy.value >0 && !isBeingCharged.value)
 			{
 				TurretEnergy.value -= Time.deltaTime * energyDrainModifier;
 			}

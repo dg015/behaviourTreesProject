@@ -7,12 +7,19 @@ using static UnityEngine.GraphicsBuffer;
 namespace NodeCanvas.Tasks.Actions {
 
 	public class ChargeTurretAT : ActionTask {
-		public NavMeshAgent navAgent;
-		public Transform TurretTransform;
 
-        public float TurretEnegergy;
+		//agent movement
+		public BBParameter<NavMeshAgent> navAgent;
+		public Transform TurretTransform;
+		public Transform TurretChargeLocation;
+
+		//turret energy
+        public float TurretEnergy;
+        public float MaxTurretEnergy;
         public Blackboard Turret;
 		public float energyChargeModifier;
+        public bool IsCharging;
+
         //flying
         public float DefaultAirHeight = 3.61f;
         public float ascendSpeed = 2f;
@@ -23,29 +30,54 @@ namespace NodeCanvas.Tasks.Actions {
 			return null;
 		}
 
-		//This is called once each time the task is enabled.
-		//Call EndAction() to mark the action as finished, either in success or failure.
-		//EndAction can be called from anywhere.
-		protected override void OnExecute() {
-			if(Vector3.Distance(agent.transform.position, TurretTransform.position) > 2)
-			{
-				
 
-                    TurretEnegergy += Time.deltaTime * energyChargeModifier;
+		private void charge()
+		{
+            if (Vector3.Distance(agent.transform.position, TurretTransform.position) < 2)
+            {
+                Debug.Log("chargin");
+                IsCharging = true;
+                //Turret.SetVariableValue("Energy", TurretEnergy);
+                TurretEnergy += Time.deltaTime * energyChargeModifier;
+
+
             }
-		}
+            if(TurretEnergy >= MaxTurretEnergy )
+            {
+                IsCharging=false;
+                EndAction(true);
+            }
+        }
+
+        protected override void OnExecute()
+        {
+            
+            TurretEnergy = 0;
+
+        }
 
         //Called once per frame while the action is active.
-		protected override void OnUpdate() {
-            TurretEnegergy = Turret.GetVariableValue<float>("Energy");
-            navAgent.SetDestination(TurretTransform.position);
+        protected override void OnUpdate() {
+            //get variables
+            //IsCharging = Turret.GetVariableValue<bool>("IsBeingCharged");
+            //TurretEnergy = Turret.GetVariableValue<float>("Energy");
+            MaxTurretEnergy = Turret.GetVariableValue<float>("MaxEnergy");
+
+            //set variables
+            Turret.SetVariableValue("Energy", TurretEnergy);
+            Turret.SetVariableValue("IsBeingCharged", IsCharging);
+
+            //call stuff
+            navAgent.value.SetDestination(TurretChargeLocation.position);
 			AirControl();
+            charge();
         }
 
 		//Called when the task is disabled.
 		protected override void OnStop() {
-			
-		}
+            IsCharging = false;
+            Turret.SetVariableValue("IsBeingCharged", IsCharging);
+        }
 
 		//Called when the task is paused.
 		protected override void OnPause() {
@@ -54,9 +86,9 @@ namespace NodeCanvas.Tasks.Actions {
 
         private void AirControl()
         {
-            float speed = Mathf.Clamp(Vector3.Distance(agent.transform.position, TurretTransform.position) / ascendSpeed, .2f, 1f);
+            float speed = Mathf.Clamp(Vector3.Distance(agent.transform.position, TurretChargeLocation.position) / ascendSpeed, .2f, 1f);
             // if player is not being chased stay at default, if go down to player level
-            float newY = Mathf.Lerp(agent.transform.position.y, TurretTransform.position.y, Time.deltaTime * speed);
+            float newY = Mathf.Lerp(agent.transform.position.y, TurretChargeLocation.position.y, Time.deltaTime * speed);
             agent.transform.position = new Vector3(agent.transform.position.x, newY, agent.transform.position.z);
 
         }

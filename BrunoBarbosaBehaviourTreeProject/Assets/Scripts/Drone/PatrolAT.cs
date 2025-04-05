@@ -18,7 +18,7 @@ namespace NodeCanvas.Tasks.Actions {
 
         //speed
         public float arrivalDistance;
-        public NavMeshAgent navAgent;
+        public BBParameter <NavMeshAgent> navAgent;
 
         //catching the player
         public bool hasBeenFound;
@@ -70,7 +70,7 @@ namespace NodeCanvas.Tasks.Actions {
 
         public void TravelToPoints()
         {
-            navAgent.SetDestination(patrolPoints[CurrentPatrolPoint].transform.position);
+            navAgent.value.SetDestination(patrolPoints[CurrentPatrolPoint].transform.position);
             if (Vector3.Distance(agent.transform.position, patrolPoints[CurrentPatrolPoint].transform.position) < arrivalDistance)
             {
                 Debug.Log("Arrived");
