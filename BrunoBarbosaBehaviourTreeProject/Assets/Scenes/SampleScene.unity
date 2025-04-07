@@ -432,20 +432,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _serializedExposedParameters: []
-  _boundGraphSerialization: '{"type":"NodeCanvas.StateMachines.FSM","nodes":[{"_actionList":{"executionMode":1,"actions":[{"Radius":10.0,"mask":{"value":64},"target":{"_name":"PlayerTransform","_targetVariableID":"2bbbdddd-4b05-4807-8b7e-12e8d9b0bee3"},"$type":"NodeCanvas.Tasks.Actions.ScanAT"}]},"_color":{"r":1.0,"g":1.0,"b":1.0,"a":1.0},"_name":"Scan","_position":{"x":761.0,"y":237.0},"$type":"NodeCanvas.StateMachines.ActionState","$id":"0"},{"_actionList":{"executionMode":1,"actions":[{"player":{"_name":"PlayerTransform","_targetVariableID":"2bbbdddd-4b05-4807-8b7e-12e8d9b0bee3"},"bullet":1,"TimeBetweenShots":5.0,"barrel":2,"BurstCount":5,"$type":"NodeCanvas.Tasks.Actions.ShootinAT"}]},"_color":{"r":1.0,"g":0.42,"b":0.32,"a":1.0},"_name":"Shooting","_position":{"x":1019.0,"y":355.9997},"$type":"NodeCanvas.StateMachines.ActionState","$id":"1"},{"_actionList":{"executionMode":1,"actions":[{"target":{"_name":"PlayerTransform","_targetVariableID":"2bbbdddd-4b05-4807-8b7e-12e8d9b0bee3"},"line1":3,"line2":4,"barrel1":5,"barrel2":6,"range":15.0,"$type":"NodeCanvas.Tasks.Actions.LockInAt"}]},"_color":{"r":1.0,"g":0.42,"b":0.32,"a":1.0},"_name":"Lock-in","_position":{"x":617.0079,"y":398.0047},"$type":"NodeCanvas.StateMachines.ActionState","$id":"2"},{"_actionList":{"executionMode":1,"actions":[{"waitTime":{"_value":1.0},"$type":"NodeCanvas.Tasks.Actions.Wait"}]},"_color":{"g":1.0,"b":0.9160821,"a":1.0},"_name":"Wait","_position":{"x":800.0,"y":449.0},"$type":"NodeCanvas.StateMachines.ActionState","$id":"3"},{"_conditionList":{"conditions":[]},"_actionList":{"executionMode":1,"actions":[{"TurretEnergy":{"_name":"Energy","_targetVariableID":"d1b6e4f4-7691-40cc-bf50-7efac56f1727"},"isBeingCharged":{"_name":"IsBeingCharged","_targetVariableID":"348ee89e-e5cf-449b-9fbc-512b5eb23a7c"},"$type":"NodeCanvas.Tasks.Actions.DischargeAT"}]},"_position":{"x":608.1429,"y":122.2081},"$type":"NodeCanvas.StateMachines.OnFSMUpdate"}],"connections":[{"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"1"},"$type":"NodeCanvas.StateMachines.FSMConnection"},{"_sourceNode":{"$ref":"1"},"_targetNode":{"$ref":"0"},"$type":"NodeCanvas.StateMachines.FSMConnection"},{"_sourceNode":{"$ref":"2"},"_targetNode":{"$ref":"3"},"$type":"NodeCanvas.StateMachines.FSMConnection"},{"_sourceNode":{"$ref":"3"},"_targetNode":{"$ref":"1"},"$type":"NodeCanvas.StateMachines.FSMConnection"}],"canvasGroups":[],"localBlackboard":{"_variables":{}}}'
+  _boundGraphSerialization: '{"type":"NodeCanvas.StateMachines.FSM","nodes":[{"_actionList":{"executionMode":1,"actions":[{"Radius":10.0,"mask":{"value":64},"target":{"_name":"PlayerTransform","_targetVariableID":"2bbbdddd-4b05-4807-8b7e-12e8d9b0bee3"},"$type":"NodeCanvas.Tasks.Actions.ScanAT"}]},"_color":{"r":1.0,"g":1.0,"b":1.0,"a":1.0},"_name":"Scan","_position":{"x":761.0,"y":237.0},"$type":"NodeCanvas.StateMachines.ActionState","$id":"0"},{"_actionList":{"executionMode":1,"actions":[{"target":{"_name":"PlayerTransform","_targetVariableID":"2bbbdddd-4b05-4807-8b7e-12e8d9b0bee3"},"line1":1,"line2":2,"barrel1":3,"barrel2":4,"range":15.0,"$type":"NodeCanvas.Tasks.Actions.LockInAt"}]},"_color":{"r":1.0,"g":0.42,"b":0.32,"a":1.0},"_name":"Lock-in","_position":{"x":649.0079,"y":386.0047},"$type":"NodeCanvas.StateMachines.ActionState","$id":"1"},{"_actionList":{"executionMode":1,"actions":[{"waitTime":{"_value":1.0},"$type":"NodeCanvas.Tasks.Actions.Wait"}]},"_color":{"g":1.0,"b":0.9160821,"a":1.0},"_name":"Wait","_position":{"x":588.0,"y":546.0},"$type":"NodeCanvas.StateMachines.ActionState","$id":"2"},{"_actionList":{"executionMode":1,"actions":[{"player":{"_name":"PlayerTransform","_targetVariableID":"2bbbdddd-4b05-4807-8b7e-12e8d9b0bee3"},"bullet":5,"TimeBetweenShots":5.0,"barrel":6,"BurstCount":5,"$type":"NodeCanvas.Tasks.Actions.ShootinAT"}]},"_color":{"r":1.0,"g":0.42,"b":0.32,"a":1.0},"_name":"Shooting","_position":{"x":981.0,"y":488.9997},"$type":"NodeCanvas.StateMachines.ActionState","$id":"3"},{"_conditionList":{"conditions":[]},"_actionList":{"executionMode":1,"actions":[{"TurretEnergy":{"_name":"Energy","_targetVariableID":"d1b6e4f4-7691-40cc-bf50-7efac56f1727"},"isBeingCharged":{"_name":"IsBeingCharged","_targetVariableID":"348ee89e-e5cf-449b-9fbc-512b5eb23a7c"},"$type":"NodeCanvas.Tasks.Actions.DischargeAT"}]},"_position":{"x":608.1429,"y":122.2081},"$type":"NodeCanvas.StateMachines.OnFSMUpdate"}],"connections":[{"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"1"},"$type":"NodeCanvas.StateMachines.FSMConnection"},{"_sourceNode":{"$ref":"1"},"_targetNode":{"$ref":"2"},"$type":"NodeCanvas.StateMachines.FSMConnection"},{"_sourceNode":{"$ref":"2"},"_targetNode":{"$ref":"3"},"$type":"NodeCanvas.StateMachines.FSMConnection"},{"_sourceNode":{"$ref":"3"},"_targetNode":{"$ref":"0"},"$type":"NodeCanvas.StateMachines.FSMConnection"}],"canvasGroups":[],"localBlackboard":{"_variables":{}}}'
   _boundGraphObjectReferences:
   - {fileID: 0}
-  - {fileID: 4362012546010381539, guid: 09950116d21332a40ab2a58de001d60e, type: 3}
-  - {fileID: 740545825}
   - {fileID: 1989568765}
   - {fileID: 1164432259}
   - {fileID: 1989568764}
   - {fileID: 1164432258}
+  - {fileID: 4362012546010381539, guid: 09950116d21332a40ab2a58de001d60e, type: 3}
+  - {fileID: 740545825}
   _boundGraphSource:
     _version: 3.31
     _category: 
     _comments: 
-    _translation: {x: -609, y: -70}
+    _translation: {x: -527, y: -135}
     _zoomFactor: 1
   _firstActivation: 0
   _enableAction: 0
@@ -2977,7 +2977,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2907437057518761358, guid: 001c33c291086994ca024f735078dcd7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.19
+      value: 4.68
       objectReference: {fileID: 0}
     - target: {fileID: 2907437057518761358, guid: 001c33c291086994ca024f735078dcd7, type: 3}
       propertyPath: m_LocalRotation.w
