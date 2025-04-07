@@ -13,6 +13,8 @@ namespace NodeCanvas.Tasks.Actions {
         public Transform barrel2;
 		public float range;
 
+
+
         //Use for initialization. This is called only once in the lifetime of the task.
         //Return null if init was successfull. Return an error string otherwise
         protected override string OnInit() {
@@ -28,29 +30,32 @@ namespace NodeCanvas.Tasks.Actions {
 
 		//Called once per frame while the action is active.
 		protected override void OnUpdate() {
-			lockInPlayer();
-
-        }
-
-		//Called when the task is disabled.
-		protected override void OnStop() {
-			
+			if(Vector3.Distance(agent.transform.position,target.value.position) < range)
+			{
+				lockInPlayer();
+            }
+			else
+			{
+				line1.enabled = false;
+                line2.enabled = false;
+			}
 		}
 
-		//Called when the task is paused.
-		protected override void OnPause() {
-			
-		}
-		
+
 		private void lockInPlayer()
 		{
-            agent.transform.LookAt(target.value);
+			agent.transform.LookAt(target.value);
 			line1.enabled = true;
-            line2.enabled = true;
+			line2.enabled = true;
 
 			line1.SetPosition(0, barrel1.position);
-            line1.SetPosition(1, target.value.position);
+			line1.SetPosition(1, target.value.position);
+
+            line2.SetPosition(0, barrel2.position);
+            line2.SetPosition(1, target.value.position);
+
         }
-		
+
+
 	}
 }
