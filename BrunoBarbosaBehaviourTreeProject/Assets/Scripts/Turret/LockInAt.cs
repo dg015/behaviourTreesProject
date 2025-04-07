@@ -7,10 +7,10 @@ namespace NodeCanvas.Tasks.Actions {
 	public class LockInAt : ActionTask {
 
 		public BBParameter<Transform> target;
-		public LineRenderer line1;
-        public LineRenderer line2;
-		public Transform barrel1;
-        public Transform barrel2;
+		public LineRenderer lineR;
+        public LineRenderer lineL;
+		public Transform barrelR;
+        public Transform barrelL;
 		public float range;
 
 
@@ -25,7 +25,7 @@ namespace NodeCanvas.Tasks.Actions {
 		//Call EndAction() to mark the action as finished, either in success or failure.
 		//EndAction can be called from anywhere.
 		protected override void OnExecute() {
-			EndAction(true);
+			//EndAction(true);
 		}
 
 		//Called once per frame while the action is active.
@@ -36,8 +36,8 @@ namespace NodeCanvas.Tasks.Actions {
             }
 			else
 			{
-				line1.enabled = false;
-                line2.enabled = false;
+				lineR.enabled = false;
+                lineL.enabled = false;
 			}
 		}
 
@@ -45,14 +45,14 @@ namespace NodeCanvas.Tasks.Actions {
 		private void lockInPlayer()
 		{
 			agent.transform.LookAt(target.value);
-			line1.enabled = true;
-			line2.enabled = true;
+			lineR.enabled = true;
+			lineL.enabled = true;
 
-			line1.SetPosition(0, barrel1.position);
-			line1.SetPosition(1, target.value.position);
+			lineR.SetPosition(0, barrelR.position);
+			lineR.SetPosition(1, target.value.position);
 
-            line2.SetPosition(0, barrel2.position);
-            line2.SetPosition(1, target.value.position);
+            lineL.SetPosition(0, barrelL.position);
+            lineL.SetPosition(1, target.value.position);
 
         }
 
