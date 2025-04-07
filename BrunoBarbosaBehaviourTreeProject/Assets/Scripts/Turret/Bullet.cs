@@ -11,6 +11,7 @@ public class Bullet : MonoBehaviour
 
     //bullet Travel
     [SerializeField] private Rigidbody bulletRb;
+    [SerializeField] private float bulletTravelForce;
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +22,7 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bulletRb.AddForce(Vector3.forward);
+        bulletRb.AddForce(Vector3.forward * bulletTravelForce);
     }
     private void OnCollisionEnter(Collision collision)
     {

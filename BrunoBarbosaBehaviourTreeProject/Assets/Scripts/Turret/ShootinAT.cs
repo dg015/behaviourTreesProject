@@ -27,8 +27,7 @@ namespace NodeCanvas.Tasks.Actions {
         //EndAction can be called from anywhere.
         protected override void OnExecute()
         {
-            shoot();
-
+            StartCoroutine(shoot());
         }
 
         //Called once per frame while the action is active.
@@ -78,7 +77,7 @@ namespace NodeCanvas.Tasks.Actions {
         */
         private void fireBullet()
         {
-            GameObject.Instantiate(bullet, barrel.position,Quaternion.identity);
+            GameObject.Instantiate(bullet, barrel.position,bullet.transform.rotation);
         }
 
     }
