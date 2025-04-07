@@ -11,7 +11,7 @@ namespace NodeCanvas.Tasks.Actions {
         public GameObject bullet;
         public float TimeBetweenShots;
         public Transform barrel;
-        private float TimeSinceLastShot;
+        public float TimeSinceLastShot;
         public int BurstCount;
 
         //Use for initialization. This is called only once in the lifetime of the task.
@@ -32,9 +32,15 @@ namespace NodeCanvas.Tasks.Actions {
         //Called once per frame while the action is active.
         protected override void OnUpdate()
         {
+            Debug.Log("running");
             if(TimeSinceLastShot >= TimeBetweenShots)
             {
+                TimeSinceLastShot = 0;
                 shoot();
+            }
+            else
+            {
+                TimeSinceLastShot += Time.deltaTime;
             }
 
         }

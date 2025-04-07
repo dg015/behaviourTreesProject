@@ -21,14 +21,19 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bulletRb.AddForce(transform.forward);
+        bulletRb.AddForce(Vector3.forward);
     }
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log(collision);
         if (collision.gameObject.CompareTag("Player"))
         {
             Rigidbody playerRB = collision.gameObject.GetComponent<Rigidbody>();
             playerRB.AddExplosionForce(force, Vector3.back, radius);
+        }
+        else if (collision.gameObject.CompareTag("Turret"))
+        {
+
         }
         else
         {
