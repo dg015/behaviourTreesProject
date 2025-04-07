@@ -48,11 +48,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb58038d53660684eb057660b935d8c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
-  force: 0
-  radius: 0
+  force: 5
+  radius: 1
   bulletRb: {fileID: 0}
-  bulletTravelForce: 0
+  bulletTravelForce: 200
 --- !u!54 &4432216609319516790
 Rigidbody:
   m_ObjectHideFlags: 0
