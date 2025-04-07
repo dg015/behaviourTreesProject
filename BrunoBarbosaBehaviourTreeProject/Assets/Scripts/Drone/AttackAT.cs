@@ -26,6 +26,9 @@ namespace NodeCanvas.Tasks.Actions {
 		//navmesh
 		public NavMeshAgent navAgent;
 
+		//animation
+		public Animator Anim;
+
 
         //Use for initialization. This is called only once in the lifetime of the task.
         //Return null if init was successfull. Return an error string otherwise
@@ -39,13 +42,14 @@ namespace NodeCanvas.Tasks.Actions {
 		
 		private void telegraphing()
 		{
+			Anim.SetTrigger("DroneHit");
 			telegraphingTimer = Mathf.Clamp(telegraphingTimer, 0, TimerLimit);
 			if(telegraphingTimer != TimerLimit)
 			{
 				BarrelRender.material.SetColor("_EmissionColor", Color.red);
 				telegraphingTimer += Time.deltaTime;
 			}
-			else
+			else if(telegraphingTimer == TimerLimit)
 			{
 				Attack();
 				EndAction(true);
