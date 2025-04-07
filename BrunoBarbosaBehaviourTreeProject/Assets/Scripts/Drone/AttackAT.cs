@@ -67,7 +67,7 @@ namespace NodeCanvas.Tasks.Actions {
         private void Attack()
 		{
 			//throw player far
-			Debug.Log("attacked");
+			
 			PlayerRB.AddExplosionForce( power,agent.transform.position,radius, 5 );	
 		}
 	}
