@@ -61,13 +61,13 @@ namespace NodeCanvas.Tasks.Actions {
             
 			if (navAgent.value.remainingDistance < .5)
 			{
-				Debug.Log("arrived");
+				
                 offset = offset * -1;
                 Move();
             }
             else if (Vector3.Distance(player.position, agent.transform.position) < TaclkeDistance )
             {
-				Debug.Log("Tackle");
+				
                 navAgent.value.SetDestination(player.position);
             }
             if (Vector3.Distance(player.position,agent.transform.position) < attackReach)

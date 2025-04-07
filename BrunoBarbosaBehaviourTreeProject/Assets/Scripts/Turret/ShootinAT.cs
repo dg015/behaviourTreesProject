@@ -55,7 +55,7 @@ namespace NodeCanvas.Tasks.Actions {
         {
             for(int i = 0; i < BurstCount; i++)
             {
-                
+                fireBullet();
             }
         }
 
