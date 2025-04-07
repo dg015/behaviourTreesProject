@@ -25,19 +25,9 @@ namespace NodeCanvas.Tasks.Actions {
 			drain();
 		}
 
-		//Called when the task is disabled.
-		protected override void OnStop() {
-			
-		}
-
-		//Called when the task is paused.
-		protected override void OnPause() {
-			
-		}
-
 		private void drain()
 		{
-			if(TurretEnergy.value <maxEnergy || TurretEnergy.value >0 && !isBeingCharged.value)
+			if(TurretEnergy.value <maxEnergy && TurretEnergy.value >0 && !isBeingCharged.value)
 			{
 				TurretEnergy.value -= Time.deltaTime * energyDrainModifier;
 			}

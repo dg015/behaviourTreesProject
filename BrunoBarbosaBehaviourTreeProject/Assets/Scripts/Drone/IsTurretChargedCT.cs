@@ -1,6 +1,6 @@
 using NodeCanvas.Framework;
 using ParadoxNotion.Design;
-
+using UnityEngine;
 
 namespace NodeCanvas.Tasks.Conditions {
 
@@ -10,20 +10,13 @@ namespace NodeCanvas.Tasks.Conditions {
 		public float TurretEnegergy;
 		public float LowEnergy;
 		//timer
-		public float analyzeTime;
-		private float RunTime;
+
 
 		protected override void OnEnable() {
-			RunTime = 0;
+
 		}
 
-		private void analyze()
-		{
-			if(RunTime>= analyzeTime)
-			{
-				CheckTurretBattery();
-			}
-		}
+
 
 		private bool CheckTurretBattery()
 		{
@@ -42,8 +35,10 @@ namespace NodeCanvas.Tasks.Conditions {
 		//Called once per frame while the condition is active.
 		//Return whether the condition is success or failure.
 		protected override bool OnCheck() {
+			Debug.Log("Im running");
 			if(CheckTurretBattery())
 			{
+				Debug.Log("returned true");
 				return true;
 			}
 			else

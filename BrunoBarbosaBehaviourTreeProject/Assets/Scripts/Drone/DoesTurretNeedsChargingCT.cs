@@ -7,7 +7,7 @@ namespace NodeCanvas.Tasks.Conditions {
     public class DoesTurretNeedsChargingCT : ConditionTask {
         //energy
         public Blackboard Turret;
-        public float TurretEnegergy;
+        private float TurretEnegergy;
         public float LowEnergy;
 
         //Use for initialization. This is called only once in the lifetime of the task.
@@ -19,6 +19,7 @@ namespace NodeCanvas.Tasks.Conditions {
 
         private bool CheckTurretBattery()
         {
+
             TurretEnegergy = Turret.GetVariableValue<float>("Energy");
             if (TurretEnegergy >= LowEnergy)
             {

@@ -24,14 +24,23 @@ namespace NodeCanvas.Tasks.Actions {
         public float DefaultAirHeight = 3.61f;
         public float ascendSpeed = 2f;
 
+        //material
+        public Renderer render;
+
         //Use for initialization. This is called only once in the lifetime of the task.
         //Return null if init was successfull. Return an error string otherwise
         protected override string OnInit() {
 			return null;
 		}
 
+        protected override void OnExecute()
+        {
+            render = agent.GetComponentInChildren<Renderer>();
+            MovementControls.ChangeColour(render, Color.blue);
+        }
 
-		private void charge()
+
+        private void charge()
 		{
             if (Vector3.Distance(agent.transform.position, TurretTransform.position) < 2)
             {
@@ -45,16 +54,11 @@ namespace NodeCanvas.Tasks.Actions {
             if(TurretEnergy >= MaxTurretEnergy )
             {
                 IsCharging=false;
+                Turret.SetVariableValue("IsBeingCharged", IsCharging);
                 EndAction(true);
             }
         }
 
-        protected override void OnExecute()
-        {
-            
-            TurretEnergy = 0;
-
-        }
 
         //Called once per frame while the action is active.
         protected override void OnUpdate() {
@@ -69,7 +73,7 @@ namespace NodeCanvas.Tasks.Actions {
 
             //call stuff
             navAgent.value.SetDestination(TurretChargeLocation.position);
-			AirControl();
+            MovementControls.AirControl(agent.transform, TurretChargeLocation, ascendSpeed);
             charge();
         }
 
@@ -79,19 +83,7 @@ namespace NodeCanvas.Tasks.Actions {
             Turret.SetVariableValue("IsBeingCharged", IsCharging);
         }
 
-		//Called when the task is paused.
-		protected override void OnPause() {
-			
-		}
 
-        private void AirControl()
-        {
-            float speed = Mathf.Clamp(Vector3.Distance(agent.transform.position, TurretChargeLocation.position) / ascendSpeed, .2f, 1f);
-            // if player is not being chased stay at default, if go down to player level
-            float newY = Mathf.Lerp(agent.transform.position.y, TurretChargeLocation.position.y, Time.deltaTime * speed);
-            agent.transform.position = new Vector3(agent.transform.position.x, newY, agent.transform.position.z);
-
-        }
 
     }
 }

@@ -28,6 +28,9 @@ namespace NodeCanvas.Tasks.Actions {
         public float DefaultAirHeight = 3.61f;
         public float ascendSpeed = 2f;
 
+        //material
+        public Renderer render;
+
         //Use for initialization. This is called only once in the lifetime of the task.
         //Return null if init was successfull. Return an error string otherwise
         protected override string OnInit()
@@ -42,6 +45,8 @@ namespace NodeCanvas.Tasks.Actions {
         {
             hasBeenFound = false;
             CurrentPatrolPoint = 0;
+            render = agent.GetComponentInChildren<Renderer>();
+            MovementControls.ChangeColour(render, Color.yellow);
             //EndAction(true);
         }
 
@@ -49,7 +54,8 @@ namespace NodeCanvas.Tasks.Actions {
         protected override void OnUpdate()
         {
             CheckForPlayer();
-            AirControl();
+            //call function from static class 
+            MovementControls.AirControl(agent.transform, patrolPoints[CurrentPatrolPoint], ascendSpeed);
             if (!hasBeenFound)
             {
                 TravelToPoints();
@@ -59,14 +65,7 @@ namespace NodeCanvas.Tasks.Actions {
             //Flying();
         }
 
-        private void AirControl()
-        {
-            float speed = Mathf.Clamp(Vector3.Distance(agent.transform.position, patrolPoints[CurrentPatrolPoint].transform.position) / ascendSpeed, .2f, 1f);
-            // if player is not being chased stay at default, if go down to player level
-            float newY = Mathf.Lerp(agent.transform.position.y, patrolPoints[CurrentPatrolPoint].transform.position.y, Time.deltaTime * speed);
-            agent.transform.position = new Vector3(agent.transform.position.x, newY, agent.transform.position.z);
 
-        }
 
         public void TravelToPoints()
         {
