@@ -2,11 +2,17 @@ using NodeCanvas.DialogueTrees;
 using NodeCanvas.Framework;
 using ParadoxNotion.Design;
 using UnityEngine;
-using UnityEngine.AI;
 
 namespace NodeCanvas.Tasks.Actions {
 
 	public class ShootinAT : ActionTask {
+
+        public BBParameter<Transform> player;
+        public GameObject bullet;
+        public float TimeBetweenShots;
+        public Transform barrel;
+        private float TimeSinceLastShot;
+        public int BurstCount;
 
         //Use for initialization. This is called only once in the lifetime of the task.
         //Return null if init was successfull. Return an error string otherwise
@@ -26,6 +32,10 @@ namespace NodeCanvas.Tasks.Actions {
         //Called once per frame while the action is active.
         protected override void OnUpdate()
         {
+            if(TimeSinceLastShot >= TimeBetweenShots)
+            {
+                shoot();
+            }
 
         }
 
@@ -40,5 +50,19 @@ namespace NodeCanvas.Tasks.Actions {
         {
 
         }
+
+        private void shoot()
+        {
+            for(int i = 0; i < BurstCount; i++)
+            {
+                
+            }
+        }
+
+        private void fireBullet()
+        {
+            GameObject.Instantiate(bullet, barrel);
+        }
+
     }
 }

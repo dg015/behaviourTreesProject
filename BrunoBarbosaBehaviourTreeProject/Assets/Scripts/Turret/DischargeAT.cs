@@ -22,6 +22,8 @@ namespace NodeCanvas.Tasks.Actions {
 
 		//Called once per frame while the action is active.
 		protected override void OnUpdate() {
+			//clamping
+			TurretEnergy.value = Mathf.Clamp(TurretEnergy.value, 0, maxEnergy);
 			drain();
 		}
 
