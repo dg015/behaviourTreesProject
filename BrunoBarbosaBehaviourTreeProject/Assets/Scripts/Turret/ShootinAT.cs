@@ -1,11 +1,12 @@
 using NodeCanvas.DialogueTrees;
 using NodeCanvas.Framework;
 using ParadoxNotion.Design;
+using System.Collections;
 using UnityEngine;
 
 namespace NodeCanvas.Tasks.Actions {
 
-	public class ShootinAT : ActionTask {
+    public class ShootinAT : ActionTask {
 
         public BBParameter<Transform> player;
         public GameObject bullet;
@@ -26,17 +27,18 @@ namespace NodeCanvas.Tasks.Actions {
         //EndAction can be called from anywhere.
         protected override void OnExecute()
         {
-            //EndAction(true);
+            shoot();
+
         }
 
         //Called once per frame while the action is active.
         protected override void OnUpdate()
         {
             Debug.Log("running");
-            if(TimeSinceLastShot >= TimeBetweenShots)
+            if (TimeSinceLastShot >= TimeBetweenShots)
             {
                 TimeSinceLastShot = 0;
-                shoot();
+                StartCoroutine(shoot());
             }
             else
             {
@@ -57,14 +59,23 @@ namespace NodeCanvas.Tasks.Actions {
 
         }
 
-        private void shoot()
+        private IEnumerator shoot()
         {
-            for(int i = 0; i < BurstCount; i++)
+
+            for (int i = 0; i < BurstCount; i++)
             {
+
                 fireBullet();
+                yield return new WaitForSeconds(.1f);
             }
         }
 
+        /*
+        private void shoot()
+        {
+
+        }
+        */
         private void fireBullet()
         {
             GameObject.Instantiate(bullet, barrel.position,Quaternion.identity);

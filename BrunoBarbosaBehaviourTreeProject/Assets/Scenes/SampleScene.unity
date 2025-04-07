@@ -167,7 +167,7 @@ GameObject:
   - component: {fileID: 205746536}
   m_Layer: 0
   m_Name: Cube (3)
-  m_TagString: Untagged
+  m_TagString: Turret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -180,12 +180,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 205746534}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.535, y: 0.876, z: 0.015}
-  m_LocalScale: {x: 0.16677, y: 0.09354053, z: 0.41528}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -0.5350001, y: 0.8760007, z: 0.015000065}
+  m_LocalScale: {x: 0.16677, y: 0.09354053, z: 0.41528004}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1302413717}
+  m_Father: {fileID: 1490194110}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!65 &205746536
 BoxCollider:
@@ -378,7 +378,7 @@ GameObject:
   - component: {fileID: 387047396}
   m_Layer: 0
   m_Name: Turret
-  m_TagString: Untagged
+  m_TagString: Turret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -432,18 +432,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _serializedExposedParameters: []
-  _boundGraphSerialization: '{"type":"NodeCanvas.StateMachines.FSM","nodes":[{"_actionList":{"executionMode":1,"actions":[{"Radius":10.0,"mask":{"value":64},"target":{"_name":"PlayerTransform","_targetVariableID":"2bbbdddd-4b05-4807-8b7e-12e8d9b0bee3"},"$type":"NodeCanvas.Tasks.Actions.ScanAT"}]},"_color":{"r":1.0,"g":1.0,"b":1.0,"a":1.0},"_name":"Scan","_position":{"x":761.0,"y":237.0},"$type":"NodeCanvas.StateMachines.ActionState","$id":"0"},{"_actionList":{"executionMode":1,"actions":[{"target":{"_name":"PlayerTransform","_targetVariableID":"2bbbdddd-4b05-4807-8b7e-12e8d9b0bee3"},"line1":1,"line2":1,"barrel1":2,"barrel2":3,"range":15.0,"$type":"NodeCanvas.Tasks.Actions.LockInAt"}]},"_color":{"r":1.0,"g":0.42,"b":0.32,"a":1.0},"_name":"Lock-in","_position":{"x":589.0,"y":381.0},"$type":"NodeCanvas.StateMachines.ActionState","$id":"1"},{"_actionList":{"executionMode":1,"actions":[{"waitTime":{"_value":1.0},"$type":"NodeCanvas.Tasks.Actions.Wait"}]},"_color":{"g":1.0,"b":0.9160821,"a":1.0},"_name":"Wait","_position":{"x":799.0,"y":449.0},"$type":"NodeCanvas.StateMachines.ActionState","$id":"2"},{"_actionList":{"executionMode":1,"actions":[]},"_color":{"r":1.0,"g":0.42,"b":0.32,"a":1.0},"_name":"Shooting","_position":{"x":1019.0,"y":357.0},"$type":"NodeCanvas.StateMachines.ActionState","$id":"3"},{"_conditionList":{"conditions":[]},"_actionList":{"executionMode":1,"actions":[{"TurretEnergy":{"_name":"Energy","_targetVariableID":"d1b6e4f4-7691-40cc-bf50-7efac56f1727"},"isBeingCharged":{"_name":"IsBeingCharged","_targetVariableID":"348ee89e-e5cf-449b-9fbc-512b5eb23a7c"},"$type":"NodeCanvas.Tasks.Actions.DischargeAT"}]},"_position":{"x":608.1429,"y":122.2081},"$type":"NodeCanvas.StateMachines.OnFSMUpdate"}],"connections":[{"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"1"},"$type":"NodeCanvas.StateMachines.FSMConnection"},{"_sourceNode":{"$ref":"1"},"_targetNode":{"$ref":"2"},"$type":"NodeCanvas.StateMachines.FSMConnection"},{"_sourceNode":{"$ref":"2"},"_targetNode":{"$ref":"3"},"$type":"NodeCanvas.StateMachines.FSMConnection"},{"_sourceNode":{"$ref":"3"},"_targetNode":{"$ref":"0"},"$type":"NodeCanvas.StateMachines.FSMConnection"}],"canvasGroups":[],"localBlackboard":{"_variables":{}}}'
+  _boundGraphSerialization: '{"type":"NodeCanvas.StateMachines.FSM","nodes":[{"_actionList":{"executionMode":1,"actions":[{"Radius":10.0,"mask":{"value":64},"target":{"_name":"PlayerTransform","_targetVariableID":"2bbbdddd-4b05-4807-8b7e-12e8d9b0bee3"},"$type":"NodeCanvas.Tasks.Actions.ScanAT"}]},"_color":{"r":1.0,"g":1.0,"b":1.0,"a":1.0},"_name":"Scan","_position":{"x":761.0,"y":237.0},"$type":"NodeCanvas.StateMachines.ActionState","$id":"0"},{"_actionList":{"executionMode":1,"actions":[{"player":{"_name":"PlayerTransform","_targetVariableID":"2bbbdddd-4b05-4807-8b7e-12e8d9b0bee3"},"bullet":1,"TimeBetweenShots":5.0,"barrel":2,"BurstCount":5,"$type":"NodeCanvas.Tasks.Actions.ShootinAT"}]},"_color":{"r":1.0,"g":0.42,"b":0.32,"a":1.0},"_name":"Shooting","_position":{"x":1019.0,"y":355.9997},"$type":"NodeCanvas.StateMachines.ActionState","$id":"1"},{"_actionList":{"executionMode":1,"actions":[{"target":{"_name":"PlayerTransform","_targetVariableID":"2bbbdddd-4b05-4807-8b7e-12e8d9b0bee3"},"line1":3,"line2":4,"barrel1":5,"barrel2":6,"range":15.0,"$type":"NodeCanvas.Tasks.Actions.LockInAt"}]},"_color":{"r":1.0,"g":0.42,"b":0.32,"a":1.0},"_name":"Lock-in","_position":{"x":617.0079,"y":398.0047},"$type":"NodeCanvas.StateMachines.ActionState","$id":"2"},{"_actionList":{"executionMode":1,"actions":[{"waitTime":{"_value":1.0},"$type":"NodeCanvas.Tasks.Actions.Wait"}]},"_color":{"g":1.0,"b":0.9160821,"a":1.0},"_name":"Wait","_position":{"x":800.0,"y":449.0},"$type":"NodeCanvas.StateMachines.ActionState","$id":"3"},{"_conditionList":{"conditions":[]},"_actionList":{"executionMode":1,"actions":[{"TurretEnergy":{"_name":"Energy","_targetVariableID":"d1b6e4f4-7691-40cc-bf50-7efac56f1727"},"isBeingCharged":{"_name":"IsBeingCharged","_targetVariableID":"348ee89e-e5cf-449b-9fbc-512b5eb23a7c"},"$type":"NodeCanvas.Tasks.Actions.DischargeAT"}]},"_position":{"x":608.1429,"y":122.2081},"$type":"NodeCanvas.StateMachines.OnFSMUpdate"}],"connections":[{"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"1"},"$type":"NodeCanvas.StateMachines.FSMConnection"},{"_sourceNode":{"$ref":"1"},"_targetNode":{"$ref":"0"},"$type":"NodeCanvas.StateMachines.FSMConnection"},{"_sourceNode":{"$ref":"2"},"_targetNode":{"$ref":"3"},"$type":"NodeCanvas.StateMachines.FSMConnection"},{"_sourceNode":{"$ref":"3"},"_targetNode":{"$ref":"1"},"$type":"NodeCanvas.StateMachines.FSMConnection"}],"canvasGroups":[],"localBlackboard":{"_variables":{}}}'
   _boundGraphObjectReferences:
   - {fileID: 0}
+  - {fileID: 4362012546010381539, guid: 09950116d21332a40ab2a58de001d60e, type: 3}
+  - {fileID: 740545825}
   - {fileID: 1989568765}
+  - {fileID: 1164432259}
   - {fileID: 1989568764}
   - {fileID: 1164432258}
   _boundGraphSource:
     _version: 3.31
     _category: 
     _comments: 
-    _translation: {x: -147.99416, y: 177.39664}
-    _zoomFactor: 0.7116999
+    _translation: {x: -609, y: -70}
+    _zoomFactor: 1
   _firstActivation: 0
   _enableAction: 0
   _disableAction: 0
@@ -465,6 +468,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 740545825}
   - {fileID: 1518260488}
   - {fileID: 1302413717}
   - {fileID: 1998666724}
@@ -483,7 +487,7 @@ GameObject:
   - component: {fileID: 389562336}
   m_Layer: 0
   m_Name: TurretChargeLocation
-  m_TagString: Untagged
+  m_TagString: Turret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -705,6 +709,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 114.147, y: 24.623001, z: 370.862}
+--- !u!1 &740545824
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 740545825}
+  m_Layer: 0
+  m_Name: ShootingBarrel
+  m_TagString: Turret
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &740545825
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 740545824}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.97}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 387047398}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &768012546
 GameObject:
   m_ObjectHideFlags: 0
@@ -719,7 +754,7 @@ GameObject:
   - component: {fileID: 768012548}
   m_Layer: 0
   m_Name: Cube (2)
-  m_TagString: Untagged
+  m_TagString: Turret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -732,12 +767,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 768012546}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.497, y: 0.876, z: 0.015}
-  m_LocalScale: {x: 0.16677, y: 0.09354053, z: 0.41528}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0.49699995, y: 0.8760007, z: 0.015000065}
+  m_LocalScale: {x: 0.16677, y: 0.09354053, z: 0.41528004}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1998666724}
+  m_Father: {fileID: 1448106460}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!65 &768012548
 BoxCollider:
@@ -1090,7 +1125,7 @@ GameObject:
   - component: {fileID: 928498239}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Turret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1316,7 +1351,7 @@ GameObject:
   - component: {fileID: 1164432259}
   m_Layer: 0
   m_Name: Barrel R
-  m_TagString: Untagged
+  m_TagString: Turret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1357,7 +1392,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ce493d17bf2770c449c70381fe436288, type: 2}
+  - {fileID: 2100000, guid: 0ffbfeabf7b31b64c99e9c64f42d3f17, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1463,7 +1498,7 @@ GameObject:
   - component: {fileID: 1302413718}
   m_Layer: 0
   m_Name: Gun L
-  m_TagString: Untagged
+  m_TagString: Turret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1482,10 +1517,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 928498238}
-  - {fileID: 1925426479}
-  - {fileID: 205746535}
-  - {fileID: 1824709067}
   - {fileID: 1989568764}
+  - {fileID: 1490194110}
   m_Father: {fileID: 387047398}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!136 &1302413718
@@ -1575,7 +1608,7 @@ GameObject:
   - component: {fileID: 1323168618}
   m_Layer: 0
   m_Name: Cube (1)
-  m_TagString: Untagged
+  m_TagString: Turret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1588,12 +1621,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1323168616}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.876, z: 0.542}
-  m_LocalScale: {x: 0.16677, y: 0.09354053, z: 0.41528}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.8759998, z: 0.54200006}
+  m_LocalScale: {x: 0.16677, y: 0.09354053, z: 0.41527998}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1998666724}
+  m_Father: {fileID: 1448106460}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1323168618
 BoxCollider:
@@ -1676,6 +1709,40 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2907437057518761358, guid: 001c33c291086994ca024f735078dcd7, type: 3}
   m_PrefabInstance: {fileID: 8930311490745399693}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1448106459
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1448106460}
+  m_Layer: 0
+  m_Name: CrossHair
+  m_TagString: Turret
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1448106460
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1448106459}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 768012547}
+  - {fileID: 1470813080}
+  - {fileID: 1323168617}
+  m_Father: {fileID: 1998666724}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1455871200
 GameObject:
   m_ObjectHideFlags: 0
@@ -1690,7 +1757,7 @@ GameObject:
   - component: {fileID: 1455871202}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Turret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1795,7 +1862,7 @@ GameObject:
   - component: {fileID: 1470813081}
   m_Layer: 0
   m_Name: Cube (3)
-  m_TagString: Untagged
+  m_TagString: Turret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1808,12 +1875,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1470813079}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.535, y: 0.876, z: 0.015}
-  m_LocalScale: {x: 0.16677, y: 0.09354053, z: 0.41528}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -0.5350001, y: 0.8760007, z: 0.015000065}
+  m_LocalScale: {x: 0.16677, y: 0.09354053, z: 0.41528004}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1998666724}
+  m_Father: {fileID: 1448106460}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!65 &1470813081
 BoxCollider:
@@ -1902,7 +1969,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1484660111
 Transform:
   m_ObjectHideFlags: 0
@@ -1941,6 +2008,40 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!1 &1490194109
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1490194110}
+  m_Layer: 0
+  m_Name: Crosshair
+  m_TagString: Turret
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1490194110
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1490194109}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1925426479}
+  - {fileID: 205746535}
+  - {fileID: 1824709067}
+  m_Father: {fileID: 1302413717}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1518260487
 GameObject:
   m_ObjectHideFlags: 0
@@ -1954,8 +2055,8 @@ GameObject:
   - component: {fileID: 1518260490}
   - component: {fileID: 1518260489}
   m_Layer: 0
-  m_Name: Cube
-  m_TagString: Untagged
+  m_Name: Turret Body
+  m_TagString: Turret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2198,7 +2299,7 @@ GameObject:
   - component: {fileID: 1824709068}
   m_Layer: 0
   m_Name: Cube (1)
-  m_TagString: Untagged
+  m_TagString: Turret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2211,12 +2312,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1824709066}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.876, z: 0.542}
-  m_LocalScale: {x: 0.16677, y: 0.09354053, z: 0.41528}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.8759998, z: 0.54200006}
+  m_LocalScale: {x: 0.16677, y: 0.09354053, z: 0.41527998}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1302413717}
+  m_Father: {fileID: 1490194110}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1824709068
 BoxCollider:
@@ -2303,7 +2404,7 @@ GameObject:
   - component: {fileID: 1925426480}
   m_Layer: 0
   m_Name: Cube (2)
-  m_TagString: Untagged
+  m_TagString: Turret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2316,12 +2417,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1925426478}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.497, y: 0.876, z: 0.015}
-  m_LocalScale: {x: 0.16677, y: 0.09354053, z: 0.41528}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0.49699995, y: 0.8760007, z: 0.015000065}
+  m_LocalScale: {x: 0.16677, y: 0.09354053, z: 0.41528004}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1302413717}
+  m_Father: {fileID: 1490194110}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!65 &1925426480
 BoxCollider:
@@ -2406,7 +2507,7 @@ GameObject:
   - component: {fileID: 1989568765}
   m_Layer: 0
   m_Name: Barrel L
-  m_TagString: Untagged
+  m_TagString: Turret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2447,7 +2548,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 0ffbfeabf7b31b64c99e9c64f42d3f17, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2544,7 +2645,7 @@ GameObject:
   - component: {fileID: 1998666725}
   m_Layer: 0
   m_Name: Gun R
-  m_TagString: Untagged
+  m_TagString: Turret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2563,10 +2664,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1455871201}
-  - {fileID: 768012547}
-  - {fileID: 1470813080}
-  - {fileID: 1323168617}
   - {fileID: 1164432258}
+  - {fileID: 1448106460}
   m_Father: {fileID: 387047398}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!136 &1998666725
@@ -2762,8 +2861,8 @@ GameObject:
   - component: {fileID: 2086723281}
   - component: {fileID: 2086723280}
   m_Layer: 0
-  m_Name: Capsule
-  m_TagString: Untagged
+  m_Name: ChargeLED
+  m_TagString: Turret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
