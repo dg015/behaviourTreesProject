@@ -43,6 +43,7 @@ namespace NodeCanvas.Tasks.Actions {
         //EndAction can be called from anywhere.
         protected override void OnExecute()
         {
+            //get reference to variables and reset some others
             hasBeenFound = false;
             CurrentPatrolPoint = 0;
             render = agent.GetComponentInChildren<Renderer>();
@@ -56,17 +57,16 @@ namespace NodeCanvas.Tasks.Actions {
             CheckForPlayer();
             //call function from static class 
             MovementControls.AirControl(agent.transform, patrolPoints[CurrentPatrolPoint], ascendSpeed);
+            //if it has not being found go to the next point
             if (!hasBeenFound)
             {
                 TravelToPoints();
             }
             FinishPatrol();
-
-            //Flying();
         }
 
 
-
+        //set navmesh agent to next point
         public void TravelToPoints()
         {
             navAgent.value.SetDestination(patrolPoints[CurrentPatrolPoint].transform.position);
@@ -79,6 +79,7 @@ namespace NodeCanvas.Tasks.Actions {
 
         public void FinishPatrol()
         {
+            //check for the current point and the lenght of point arrays
             if (CurrentPatrolPoint >= patrolPoints.Length)
             {
                 Debug.Log("finishedPatrol");
@@ -88,6 +89,7 @@ namespace NodeCanvas.Tasks.Actions {
 
         public void CheckForPlayer()
         {
+            //check if they're close enough to the player, if so end script and se found true
             if(Vector3.Distance(agent.transform.position,Player.value.position)< catchDistance)
             {
                 Vector3.Distance(agent.transform.position, Player.value.position);

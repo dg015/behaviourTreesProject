@@ -35,20 +35,22 @@ namespace NodeCanvas.Tasks.Actions {
         protected override string OnInit() {
 			PlayerRB = player.GetComponent<Rigidbody>();
             PlayerTransform = player.GetComponent<Transform>();
-
-
             return null;
 		}
 		
 		private void telegraphing()
 		{
+			//set animation trigger
 			Anim.SetTrigger("DroneHit");
+			//clamp timers
 			telegraphingTimer = Mathf.Clamp(telegraphingTimer, 0, TimerLimit);
+			//have timer going on
 			if(telegraphingTimer != TimerLimit)
 			{
 				BarrelRender.material.SetColor("_EmissionColor", Color.red);
 				telegraphingTimer += Time.deltaTime;
 			}
+			//if time is over attack and end action
 			else if(telegraphingTimer == TimerLimit)
 			{
 				Attack();
@@ -64,6 +66,7 @@ namespace NodeCanvas.Tasks.Actions {
 
         private void Attack()
 		{
+			//throw player far
 			Debug.Log("attacked");
 			PlayerRB.AddExplosionForce( power,agent.transform.position,radius, 5 );	
 		}

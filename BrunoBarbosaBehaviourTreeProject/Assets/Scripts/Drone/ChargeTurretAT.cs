@@ -35,6 +35,7 @@ namespace NodeCanvas.Tasks.Actions {
 
         protected override void OnExecute()
         {
+            //get variables and set color blue for signfier
             render = agent.GetComponentInChildren<Renderer>();
             MovementControls.ChangeColour(render, Color.blue);
         }
@@ -42,15 +43,14 @@ namespace NodeCanvas.Tasks.Actions {
 
         private void charge()
 		{
+            //check if the drone is close enough to charge
             if (Vector3.Distance(agent.transform.position, TurretTransform.position) < 2)
             {
-                Debug.Log("chargin");
+                //set variable to true so that in the discharge script so that it doesnt remove battery while charing
                 IsCharging = true;
-                //Turret.SetVariableValue("Energy", TurretEnergy);
                 TurretEnergy += Time.deltaTime * energyChargeModifier;
-
-
             }
+            //if it has enough energy set is charging as false and set energy variable to turret blackboard
             if(TurretEnergy >= MaxTurretEnergy )
             {
                 IsCharging=false;
@@ -62,23 +62,23 @@ namespace NodeCanvas.Tasks.Actions {
 
         //Called once per frame while the action is active.
         protected override void OnUpdate() {
-            //get variables
-            //IsCharging = Turret.GetVariableValue<bool>("IsBeingCharged");
-            //TurretEnergy = Turret.GetVariableValue<float>("Energy");
+            //get the energy variable from the the turret blackboard
             MaxTurretEnergy = Turret.GetVariableValue<float>("MaxEnergy");
 
             //set variables
             Turret.SetVariableValue("Energy", TurretEnergy);
             Turret.SetVariableValue("IsBeingCharged", IsCharging);
 
-            //call stuff
+            //call functions
             navAgent.value.SetDestination(TurretChargeLocation.position);
+            //get air control from static script
             MovementControls.AirControl(agent.transform, TurretChargeLocation, ascendSpeed);
             charge();
         }
 
 		//Called when the task is disabled.
 		protected override void OnStop() {
+            //set charing as false a second time to make sure
             IsCharging = false;
             Turret.SetVariableValue("IsBeingCharged", IsCharging);
         }

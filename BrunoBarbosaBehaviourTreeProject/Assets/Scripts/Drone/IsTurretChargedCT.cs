@@ -7,21 +7,15 @@ namespace NodeCanvas.Tasks.Conditions {
 	public class IsTurretChargedCT : ConditionTask {
 		//energy
 		public Blackboard Turret;
-		public float TurretEnegergy;
+		public float TurretEnergy;
 		public float LowEnergy;
-		//timer
-
-
-		protected override void OnEnable() {
-
-		}
-
-
 
 		private bool CheckTurretBattery()
 		{
-			TurretEnegergy = Turret.GetVariableValue<float>("Energy");
-			if(TurretEnegergy <= LowEnergy)
+			//get turret energy from other blackboard
+			TurretEnergy = Turret.GetVariableValue<float>("Energy");
+			//check if it has enough energy
+			if(TurretEnergy <= LowEnergy)
 			{
 				return false;
 			}
@@ -35,10 +29,10 @@ namespace NodeCanvas.Tasks.Conditions {
 		//Called once per frame while the condition is active.
 		//Return whether the condition is success or failure.
 		protected override bool OnCheck() {
-			Debug.Log("Im running");
+			
 			if(CheckTurretBattery())
 			{
-				Debug.Log("returned true");
+				
 				return true;
 			}
 			else
