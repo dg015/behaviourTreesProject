@@ -15,6 +15,9 @@ namespace NodeCanvas.Tasks.Actions {
         public float TimeSinceLastShot;
         public int BurstCount;
 
+        //animation
+        public Animator Anim;
+
         //Use for initialization. This is called only once in the lifetime of the task.
         //Return null if init was successfull. Return an error string otherwise
         protected override string OnInit()
@@ -27,6 +30,7 @@ namespace NodeCanvas.Tasks.Actions {
         //EndAction can be called from anywhere.
         protected override void OnExecute()
         {
+            Anim.SetBool("Shooting", true);
             StartCoroutine(shoot());
         }
 
@@ -49,7 +53,7 @@ namespace NodeCanvas.Tasks.Actions {
         //Called when the task is disabled.
         protected override void OnStop()
         {
-
+            Anim.SetBool("Shooting", false);
         }
 
         //Called when the task is paused.

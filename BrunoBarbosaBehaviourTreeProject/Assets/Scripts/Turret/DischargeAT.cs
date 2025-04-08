@@ -10,6 +10,9 @@ namespace NodeCanvas.Tasks.Actions {
 		public float energyDrainModifier = 1;
 		public BBParameter<bool> isBeingCharged = false;
 
+		public Material mat;
+
+
 		//Use for initialization. This is called only once in the lifetime of the task.
 		//Return null if init was successfull. Return an error string otherwise
 		protected override string OnInit() {
@@ -22,16 +25,23 @@ namespace NodeCanvas.Tasks.Actions {
 
 		//Called once per frame while the action is active.
 		protected override void OnUpdate() {
+            drain();
+            Color startColor = Color.green;
+			Color EndColor = Color.red;
 			//clamping
 			TurretEnergy.value = Mathf.Clamp(TurretEnergy.value, 0, maxEnergy);
-			drain();
+			
+
+			mat.color = Color.Lerp(EndColor, startColor, TurretEnergy.value/100);
 		}
 
 		private void drain()
 		{
-			if(TurretEnergy.value <maxEnergy && TurretEnergy.value >0 && !isBeingCharged.value)
+			
+			if(TurretEnergy.value <= maxEnergy && TurretEnergy.value >=0 && !isBeingCharged.value)
 			{
-				TurretEnergy.value -= Time.deltaTime * energyDrainModifier;
+                Debug.Log("draining");
+                TurretEnergy.value -= Time.deltaTime * energyDrainModifier;
 			}
 		}
 
