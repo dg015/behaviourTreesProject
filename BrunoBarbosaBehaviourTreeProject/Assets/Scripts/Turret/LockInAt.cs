@@ -11,7 +11,7 @@ namespace NodeCanvas.Tasks.Actions {
         public LineRenderer lineL;
 		public Transform barrelR;
         public Transform barrelL;
-		public float range;
+		public BBParameter<float> range;
 
 
 
@@ -30,7 +30,7 @@ namespace NodeCanvas.Tasks.Actions {
 
 		//Called once per frame while the action is active.
 		protected override void OnUpdate() {
-			if(Vector3.Distance(agent.transform.position,target.value.position) < range)
+			if(Vector3.Distance(agent.transform.position,target.value.position) < range.value)
 			{
 				lockInPlayer();
             }
