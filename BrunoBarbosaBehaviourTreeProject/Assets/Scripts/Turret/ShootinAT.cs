@@ -81,7 +81,7 @@ namespace NodeCanvas.Tasks.Actions {
         */
         private void fireBullet()
         {
-            GameObject.Instantiate(bullet, barrel.position,bullet.transform.rotation);
+            GameObject.Instantiate(bullet, barrel.position,barrel.rotation);
         }
 
     }

@@ -16,12 +16,14 @@ public class Bullet : MonoBehaviour
     void Start()
     {
         bulletRb = gameObject.GetComponent<Rigidbody>();
+        Destroy(gameObject, 10);
     }
 
     // Update is called once per frame
     void Update()
     {
-        bulletRb.AddForce(Vector3.forward * bulletTravelForce);
+        bulletRb.AddForce(transform.forward * bulletTravelForce, ForceMode.VelocityChange);
+        
     }
     private void OnCollisionEnter(Collision collision)
     {
