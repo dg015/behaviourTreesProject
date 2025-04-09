@@ -8,12 +8,13 @@ namespace NodeCanvas.Tasks.Actions {
 	public class AttackAT : ActionTask {
 
 		public GameObject player;
-		private Rigidbody PlayerRB;
+		public Rigidbody PlayerRB;
 		private Transform PlayerTransform;
 
 		//explosioin
 		public float power = 16;
 		public float radius = 10;
+		public float upwardsForce;
 
 		//Telegraphing
 		public GameObject barrel;
@@ -28,6 +29,7 @@ namespace NodeCanvas.Tasks.Actions {
 
 		//animation
 		public Animator Anim;
+
 
 
         //Use for initialization. This is called only once in the lifetime of the task.
@@ -54,22 +56,22 @@ namespace NodeCanvas.Tasks.Actions {
 			else if(telegraphingTimer == TimerLimit)
 			{
 				Attack();
-				EndAction(true);
-			}
+               
+            }
 
 		}
 
 		protected override void OnUpdate()
 		{
-			
 			telegraphing();
 		}
 
         private void Attack()
 		{
 			//throw player far
-			
-			PlayerRB.AddExplosionForce( power,agent.transform.position,radius, 5 );	
-		}
+			Debug.Log("attacked");
+			PlayerRB.AddExplosionForce( power,agent.transform.position,radius, upwardsForce,ForceMode.Impulse );
+            EndAction(true);
+        }
 	}
 }

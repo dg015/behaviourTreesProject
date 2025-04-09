@@ -26,7 +26,7 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField] private float speed;
     private float horizontalInput;
     private float verticalInput;
-    private float drag;
+    [SerializeField] private float drag;
     Vector3 moveDirectionl;
 
 
@@ -45,7 +45,7 @@ public class FirstPersonController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // speedControl();
+        speedControl();
         Debug.DrawLine(orientation.position, orientation.forward * 1000,Color.red);
         getInput();
         
